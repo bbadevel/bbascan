@@ -16,7 +16,7 @@ import { MintsProvider } from "providers/mints";
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
-    dsn: "https://5efdc15b4828434fbe949b5daed472be@o434108.ingest.sentry.io/5390542",
+    dsn: "https://1461315772b645a58897178afb40f6eb@o4504830569938944.ingest.sentry.io/4504830571642880",
   });
 }
 
