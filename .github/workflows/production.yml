@@ -1,4 +1,4 @@
-name: BBA Scan Production Deployment
+name: Production Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -18,7 +18,7 @@ jobs:
            node-version: '16'
            cache: 'npm'
            cache-dependency-path: package-lock.json
-       - run: npm i -g npm@7
+       - run: npm i -g npm@8
        - run: npm ci
        - run: npm run format
        - run: npm run build

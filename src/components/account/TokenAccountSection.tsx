@@ -486,7 +486,8 @@ function TokenAccountCard({
                 <span className="font-monospace">
                   {new BigNumber(
                     info.rentExemptReserve.uiAmountString
-                  ).toFormat(9)} BBA
+                  ).toFormat(9)}{" "}
+                  BBA
                 </span>
               </>
             </td>
