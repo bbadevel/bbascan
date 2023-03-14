@@ -19,11 +19,11 @@ jobs:
            cache: 'npm'
            cache-dependency-path: package-lock.json
        - run: npm i -g npm@8
-       - run: npm ci --legacy-peer-deps
+       - run: npm ci
        - run: npm run format
        - run: npm run build
        - run: npm run test
-       
+
   Deploy-Production:
     needs: Production-Build-Test
     runs-on: ubuntu-latest

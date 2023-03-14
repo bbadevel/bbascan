@@ -13,8 +13,6 @@ import {
 import { Cluster, useCluster } from "providers/cluster";
 import { useTokenRegistry } from "providers/mints/token-registry";
 import { TokenInfoMap } from "@solana/spl-token-registry";
-import { Connection } from "@solana/web3.js";
-import { getDomainInfo, hasDomainSyntax } from "utils/name-service";
 
 interface SearchOptions {
   label: string;
@@ -36,7 +34,7 @@ export function SearchBar() {
   const history = useHistory();
   const location = useLocation();
   const { tokenRegistry } = useTokenRegistry();
-  const { url, cluster, clusterInfo } = useCluster();
+  const { cluster, clusterInfo } = useCluster();
 
   const onChange = (
     { pathname }: ValueType<any, false>,
@@ -69,35 +67,36 @@ export function SearchBar() {
 
     setSearchOptions(options);
 
-    // checking for non local search output
-    if (hasDomainSyntax(search)) {
-      // if search input is a potential domain we continue the loading state
-      domainSearch(options);
-    } else {
-      // if search input is not a potential domain we can conclude the search has finished
-      setLoadingSearch(false);
-    }
+    // // checking for non local search output
+    // if (hasDomainSyntax(search)) {
+    //   // if search input is a potential domain we continue the loading state
+    //   domainSearch(options);
+    // } else {
+    //   // if search input is not a potential domain we can conclude the search has finished
+    //   setLoadingSearch(false);
+    // }
+    setLoadingSearch(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
-  // appends domain lookup results to the local search state
-  const domainSearch = async (options: SearchOptions[]) => {
-    setLoadingSearchMessage("Looking up domain...");
-    const connection = new Connection(url);
-    const searchTerm = search;
-    const updatedOptions = await buildDomainOptions(
-      connection,
-      search,
-      options
-    );
-    if (searchRef.current === searchTerm) {
-      setSearchOptions(updatedOptions);
-      // after attempting to fetch the domain name we can conclude the loading state
-      setLoadingSearch(false);
-      setLoadingSearchMessage("Loading...");
-    }
-  };
+  // // appends domain lookup results to the local search state
+  // const domainSearch = async (options: SearchOptions[]) => {
+  //   setLoadingSearchMessage("Looking up domain...");
+  //   const connection = new Connection(url);
+  //   const searchTerm = search;
+  //   const updatedOptions = await buildDomainOptions(
+  //     connection,
+  //     search,
+  //     options
+  //   );
+  //   if (searchRef.current === searchTerm) {
+  //     setSearchOptions(updatedOptions);
+  //     // after attempting to fetch the domain name we can conclude the loading state
+  //     setLoadingSearch(false);
+  //     setLoadingSearchMessage("Loading...");
+  //   }
+  // };
 
   const resetValue = "" as any;
   return (
@@ -256,37 +255,37 @@ function buildTokenOptions(
   }
 }
 
-async function buildDomainOptions(
-  connection: Connection,
-  search: string,
-  options: SearchOptions[]
-) {
-  const domainInfo = await getDomainInfo(search, connection);
-  const updatedOptions: SearchOptions[] = [...options];
-  if (domainInfo && domainInfo.owner && domainInfo.address) {
-    updatedOptions.push({
-      label: "Domain Owner",
-      options: [
-        {
-          label: domainInfo.owner,
-          value: [search],
-          pathname: "/address/" + domainInfo.owner,
-        },
-      ],
-    });
-    updatedOptions.push({
-      label: "Name Service Account",
-      options: [
-        {
-          label: search,
-          value: [search],
-          pathname: "/address/" + domainInfo.address,
-        },
-      ],
-    });
-  }
-  return updatedOptions;
-}
+// async function buildDomainOptions(
+//   connection: Connection,
+//   search: string,
+//   options: SearchOptions[]
+// ) {
+//   const domainInfo = await getDomainInfo(search, connection);
+//   const updatedOptions: SearchOptions[] = [...options];
+//   if (domainInfo && domainInfo.owner && domainInfo.address) {
+//     updatedOptions.push({
+//       label: "Domain Owner",
+//       options: [
+//         {
+//           label: domainInfo.owner,
+//           value: [search],
+//           pathname: "/address/" + domainInfo.owner,
+//         },
+//       ],
+//     });
+//     updatedOptions.push({
+//       label: "Name Service Account",
+//       options: [
+//         {
+//           label: search,
+//           value: [search],
+//           pathname: "/address/" + domainInfo.address,
+//         },
+//       ],
+//     });
+//   }
+//   return updatedOptions;
+// }
 
 // builds local search options
 function buildOptions(
