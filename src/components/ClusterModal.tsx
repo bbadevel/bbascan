@@ -168,7 +168,7 @@ function ClusterToggle() {
         const clusterLocation = (location: Location) => {
           const params = new URLSearchParams(location.search);
           const slug = clusterSlug(net);
-          if (slug !== "mainnet-beta") {
+          if (slug !== "mainnet") {
             params.set("cluster", slug);
           } else {
             params.delete("cluster");
