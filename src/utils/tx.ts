@@ -106,14 +106,9 @@ export enum PROGRAM_NAMES {
   OPENBOOK_DEX = "OpenBook Dex",
 }
 
-const ALL_CLUSTERS = [
-  Cluster.Custom,
-  Cluster.Devnet,
-  Cluster.Testnet,
-  Cluster.MainnetBeta,
-];
+const ALL_CLUSTERS = [Cluster.Custom, Cluster.Testnet, Cluster.MainnetBeta];
 
-const LIVE_CLUSTERS = [Cluster.Devnet, Cluster.Testnet, Cluster.MainnetBeta];
+const LIVE_CLUSTERS = [Cluster.Testnet, Cluster.MainnetBeta];
 
 export type ProgramInfo = {
   name: string;
@@ -164,7 +159,7 @@ export const PROGRAM_INFO_BY_ID: { [address: string]: ProgramInfo } = {
   },
   cmtDvXumGCrqC1Age74AVPhSRVXJMd8PJS91L8KbNCK: {
     name: PROGRAM_NAMES.ACCOUNT_COMPRESSION,
-    deployments: [Cluster.Devnet, Cluster.MainnetBeta],
+    deployments: [Cluster.MainnetBeta],
   },
   Feat1YXHhH6t1juaWF74WLcfv4XoNocjXA6sPWHNgAse: {
     name: PROGRAM_NAMES.FEATURE_PROPOSAL,
@@ -222,11 +217,11 @@ export const PROGRAM_INFO_BY_ID: { [address: string]: ProgramInfo } = {
   },
   cjg3oHmg9uuPsP8D6g29NWvhySJkdYdAo9D25PRbKXJ: {
     name: PROGRAM_NAMES.CHAINLINK_ORACLE,
-    deployments: [Cluster.Devnet, Cluster.MainnetBeta],
+    deployments: [Cluster.MainnetBeta],
   },
   HEvSKofvBgfaexv23kMabbYqxasxU3mQ4ibBMEmJWHny: {
     name: PROGRAM_NAMES.CHAINLINK_STORE,
-    deployments: [Cluster.Devnet, Cluster.MainnetBeta],
+    deployments: [Cluster.MainnetBeta],
   },
   GqTPL6qRf5aUuqscLh8Rg2HTxPUXfhhAXDptTLhp1t2J: {
     name: PROGRAM_NAMES.MANGO_GOVERNANCE,
@@ -254,7 +249,7 @@ export const PROGRAM_INFO_BY_ID: { [address: string]: ProgramInfo } = {
   },
   MERLuDFBMmsHnsBPZw2sDQZHvXFMwp8EdjudcU2HKky: {
     name: PROGRAM_NAMES.MERCURIAL,
-    deployments: [Cluster.Devnet, Cluster.MainnetBeta],
+    deployments: [Cluster.MainnetBeta],
   },
   p1exdMJcjVao65QdewkaZRUnU6VPSXhus9n2GzWfh98: {
     name: PROGRAM_NAMES.METAPLEX,
@@ -287,10 +282,6 @@ export const PROGRAM_INFO_BY_ID: { [address: string]: ProgramInfo } = {
   Port7uDYB3wk6GJAw4KT1WpTeMtSu9bTcChBHkX2LfR: {
     name: PROGRAM_NAMES.PORT,
     deployments: [Cluster.MainnetBeta],
-  },
-  gSbePebfvPy7tRqimPoVecS2UsBvYv46ynrzWocc92s: {
-    name: PROGRAM_NAMES.PYTH_DEVNET,
-    deployments: [Cluster.Devnet],
   },
   "8tfDNiaEyrV6Q1U4DEXrEigs9DoDtkugzFbybENEbCDz": {
     name: PROGRAM_NAMES.PYTH_TESTNET,
@@ -342,11 +333,11 @@ export const PROGRAM_INFO_BY_ID: { [address: string]: ProgramInfo } = {
   },
   Crt7UoUR6QgrFrN7j8rmSQpUTNWNSitSwWvsWGf1qZ5t: {
     name: PROGRAM_NAMES.SABER_ROUTER,
-    deployments: [Cluster.Devnet, Cluster.MainnetBeta],
+    deployments: [Cluster.MainnetBeta],
   },
   SSwpkEEcbUqx4vtoEByFjSkhKdCT862DNVb52nZg1UZ: {
     name: PROGRAM_NAMES.SABER_SWAP,
-    deployments: [Cluster.Devnet, Cluster.MainnetBeta],
+    deployments: [Cluster.MainnetBeta],
   },
   BJ3jrUzddfuSrZHXSCxMUUQsjKEyLmuuyZebkcaFp2fg: {
     name: PROGRAM_NAMES.SERUM_1,
@@ -392,25 +383,13 @@ export const PROGRAM_INFO_BY_ID: { [address: string]: ProgramInfo } = {
     name: PROGRAM_NAMES.WORMHOLE_CORE,
     deployments: [Cluster.MainnetBeta],
   },
-  "3u8hJUVTA4jH1wYAyUur7FFZVQ8H635K3tSHHF4ssjQ5": {
-    name: PROGRAM_NAMES.WORMHOLE_CORE,
-    deployments: [Cluster.Devnet],
-  },
   wormDTUJ6AWPNvk59vGQbDvGJmqbDTdgWgAqcLBCgUb: {
     name: PROGRAM_NAMES.WORMHOLE_TOKEN,
     deployments: [Cluster.MainnetBeta],
   },
-  DZnkkTmCiFWfYTfT41X3Rd1kDgozqzxWaHqsw6W4x2oe: {
-    name: PROGRAM_NAMES.WORMHOLE_TOKEN,
-    deployments: [Cluster.Devnet],
-  },
   WnFt12ZrnzZrFZkt2xsNsaNWoQribnuQ5B5FrDbwDhD: {
     name: PROGRAM_NAMES.WORMHOLE_NFT,
     deployments: [Cluster.MainnetBeta],
-  },
-  "2rHhojZ7hpu1zA91nvZmT8TqWWvMcKmmNBCr2mKTtMq4": {
-    name: PROGRAM_NAMES.WORMHOLE_NFT,
-    deployments: [Cluster.Devnet],
   },
   CJsLwbP1iu5DuUikHEJnLfANgKy6stB2uFgvBBHoyxwz: {
     name: PROGRAM_NAMES.SOLANART,
@@ -430,11 +409,11 @@ export const PROGRAM_INFO_BY_ID: { [address: string]: ProgramInfo } = {
   },
   "3XXuUFfweXBwFgFfYaejLvZE4cGZiHgKiGfMtdxNzYmv": {
     name: PROGRAM_NAMES.CLOCKWORK_1,
-    deployments: [Cluster.MainnetBeta, Cluster.Devnet],
+    deployments: [Cluster.MainnetBeta],
   },
   CLoCKyJ6DXBJqqu2VWx9RLbgnwwR6BMHHuyasVmfMzBh: {
     name: PROGRAM_NAMES.CLOCKWORK_2,
-    deployments: [Cluster.MainnetBeta, Cluster.Devnet],
+    deployments: [Cluster.MainnetBeta],
   },
 };
 
