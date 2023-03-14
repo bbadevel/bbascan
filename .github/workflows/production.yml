@@ -23,7 +23,7 @@ jobs:
        - run: npm run format
        - run: npm run build
        - run: npm run test
-       
+
   Deploy-Production:
     needs: Production-Build-Test
     runs-on: ubuntu-latest

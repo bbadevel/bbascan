@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  clusterApiUrl,
-  Connection,
-  EpochInfo,
-  EpochSchedule,
-} from "@solana/web3.js";
+import { Connection, EpochInfo, EpochSchedule } from "@solana/web3.js";
 import { useQuery } from "../utils/url";
 import { useHistory, useLocation } from "react-router-dom";
 import { reportError } from "utils/sentry";
@@ -19,16 +14,10 @@ export enum ClusterStatus {
 export enum Cluster {
   MainnetBeta,
   Testnet,
-  Devnet,
   Custom,
 }
 
-export const CLUSTERS = [
-  Cluster.MainnetBeta,
-  Cluster.Testnet,
-  Cluster.Devnet,
-  Cluster.Custom,
-];
+export const CLUSTERS = [Cluster.MainnetBeta, Cluster.Testnet, Cluster.Custom];
 
 export function clusterSlug(cluster: Cluster): string {
   switch (cluster) {
@@ -36,8 +25,6 @@ export function clusterSlug(cluster: Cluster): string {
       return "mainnet-beta";
     case Cluster.Testnet:
       return "testnet";
-    case Cluster.Devnet:
-      return "devnet";
     case Cluster.Custom:
       return "custom";
   }
@@ -49,16 +36,13 @@ export function clusterName(cluster: Cluster): string {
       return "Mainnet Beta";
     case Cluster.Testnet:
       return "Testnet";
-    case Cluster.Devnet:
-      return "Devnet";
     case Cluster.Custom:
       return "Custom";
   }
 }
 
-export const MAINNET_BETA_URL = clusterApiUrl("mainnet-beta");
-export const TESTNET_URL = clusterApiUrl("testnet");
-export const DEVNET_URL = clusterApiUrl("devnet");
+export const MAINNET_URL = "https://api-mainnet.bbachain.com";
+export const TESTNET_URL = "https://api-testnet.bbachain.com";
 
 export function clusterUrl(cluster: Cluster, customUrl: string): string {
   const modifyUrl = (url: string): string => {
@@ -70,12 +54,8 @@ export function clusterUrl(cluster: Cluster, customUrl: string): string {
   };
 
   switch (cluster) {
-    case Cluster.Devnet:
-      return process.env.REACT_APP_DEVNET_RPC_URL ?? modifyUrl(DEVNET_URL);
     case Cluster.MainnetBeta:
-      return (
-        process.env.REACT_APP_MAINNET_RPC_URL ?? modifyUrl(MAINNET_BETA_URL)
-      );
+      return process.env.REACT_APP_MAINNET_RPC_URL ?? modifyUrl(MAINNET_URL);
     case Cluster.Testnet:
       return process.env.REACT_APP_TESTNET_RPC_URL ?? modifyUrl(TESTNET_URL);
     case Cluster.Custom:
@@ -125,8 +105,6 @@ function parseQuery(query: URLSearchParams): Cluster {
   switch (clusterParam) {
     case "custom":
       return Cluster.Custom;
-    case "devnet":
-      return Cluster.Devnet;
     case "testnet":
       return Cluster.Testnet;
     case "mainnet-beta":

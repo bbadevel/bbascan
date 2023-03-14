@@ -3,7 +3,6 @@ import { AnchorAccountCard } from "components/account/AnchorAccountCard";
 import { AnchorProgramCard } from "components/account/AnchorProgramCard";
 import { BlockhashesCard } from "components/account/BlockhashesCard";
 import { ConfigAccountSection } from "components/account/ConfigAccountSection";
-import { DomainsCard } from "components/account/DomainsCard";
 import { TokenInstructionsCard } from "components/account/history/TokenInstructionsCard";
 import { TokenTransfersCard } from "components/account/history/TokenTransfersCard";
 import { TransactionHistoryCard } from "components/account/history/TransactionHistoryCard";
@@ -507,7 +506,6 @@ function MoreSection({
           nftData={(account.data.parsed as TokenProgramData).nftData!}
         />
       )}
-      {tab === "domains" && <DomainsCard pubkey={pubkey} />}
       {tab === "security" &&
         parsedData?.program === "bpf-upgradeable-loader" && (
           <SecurityCard data={parsedData} />
