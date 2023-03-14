@@ -12,17 +12,17 @@ export enum ClusterStatus {
 }
 
 export enum Cluster {
-  MainnetBeta,
+  Mainnet,
   Testnet,
   Custom,
 }
 
-export const CLUSTERS = [Cluster.MainnetBeta, Cluster.Testnet, Cluster.Custom];
+export const CLUSTERS = [Cluster.Mainnet, Cluster.Testnet, Cluster.Custom];
 
 export function clusterSlug(cluster: Cluster): string {
   switch (cluster) {
-    case Cluster.MainnetBeta:
-      return "mainnet-beta";
+    case Cluster.Mainnet:
+      return "mainnet";
     case Cluster.Testnet:
       return "testnet";
     case Cluster.Custom:
@@ -32,8 +32,8 @@ export function clusterSlug(cluster: Cluster): string {
 
 export function clusterName(cluster: Cluster): string {
   switch (cluster) {
-    case Cluster.MainnetBeta:
-      return "Mainnet Beta";
+    case Cluster.Mainnet:
+      return "Mainnet";
     case Cluster.Testnet:
       return "Testnet";
     case Cluster.Custom:
@@ -45,25 +45,17 @@ export const MAINNET_URL = "https://api-mainnet.bbachain.com";
 export const TESTNET_URL = "https://api-testnet.bbachain.com";
 
 export function clusterUrl(cluster: Cluster, customUrl: string): string {
-  const modifyUrl = (url: string): string => {
-    if (window.location.hostname === "localhost") {
-      return url;
-    } else {
-      return url.replace("api", "explorer-api");
-    }
-  };
-
   switch (cluster) {
-    case Cluster.MainnetBeta:
-      return process.env.REACT_APP_MAINNET_RPC_URL ?? modifyUrl(MAINNET_URL);
+    case Cluster.Mainnet:
+      return process.env.REACT_APP_MAINNET_RPC_URL ?? MAINNET_URL;
     case Cluster.Testnet:
-      return process.env.REACT_APP_TESTNET_RPC_URL ?? modifyUrl(TESTNET_URL);
+      return process.env.REACT_APP_TESTNET_RPC_URL ?? TESTNET_URL;
     case Cluster.Custom:
       return customUrl;
   }
 }
 
-export const DEFAULT_CLUSTER = Cluster.MainnetBeta;
+export const DEFAULT_CLUSTER = Cluster.Mainnet;
 const DEFAULT_CUSTOM_URL = "http://localhost:8899";
 
 type Action = State;
@@ -107,9 +99,9 @@ function parseQuery(query: URLSearchParams): Cluster {
       return Cluster.Custom;
     case "testnet":
       return Cluster.Testnet;
-    case "mainnet-beta":
+    case "mainnet":
     default:
-      return Cluster.MainnetBeta;
+      return Cluster.Mainnet;
   }
 }
 

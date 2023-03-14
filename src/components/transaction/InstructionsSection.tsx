@@ -82,7 +82,7 @@ export function InstructionsSection({ signature }: SignatureProps) {
 
   if (
     meta?.innerInstructions &&
-    (cluster !== Cluster.MainnetBeta ||
+    (cluster !== Cluster.Mainnet ||
       transactionWithMeta.slot >= INNER_INSTRUCTIONS_START_SLOT)
   ) {
     meta.innerInstructions.forEach((parsed: ParsedInnerInstruction) => {

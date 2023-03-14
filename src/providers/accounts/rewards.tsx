@@ -7,7 +7,7 @@ import { FetchStatus } from "providers/cache";
 import { reportError } from "utils/sentry";
 
 const REWARDS_AVAILABLE_EPOCH = new Map<Cluster, number>([
-  [Cluster.MainnetBeta, 132],
+  [Cluster.Mainnet, 132],
   [Cluster.Testnet, 43],
 ]);
 

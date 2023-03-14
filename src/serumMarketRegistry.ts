@@ -293,7 +293,7 @@ const MARKET_REGISTRY: { [key: string]: string } = {
 };
 
 function get(address: string, cluster: Cluster): string | undefined {
-  if (cluster === Cluster.MainnetBeta) return MARKET_REGISTRY[address];
+  if (cluster === Cluster.Mainnet) return MARKET_REGISTRY[address];
 }
 
 export const SerumMarketRegistry = {

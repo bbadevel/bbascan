@@ -432,7 +432,7 @@ const TokenTransactionRow = React.memo(
 
           if (
             transactionWithMeta.meta?.innerInstructions &&
-            (cluster !== Cluster.MainnetBeta ||
+            (cluster !== Cluster.Mainnet ||
               transactionWithMeta.slot >= INNER_INSTRUCTIONS_START_SLOT)
           ) {
             transactionWithMeta.meta.innerInstructions.forEach((ix) => {
